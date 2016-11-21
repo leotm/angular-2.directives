@@ -1,4 +1,4 @@
-import { Directive, HostListener, HostBinding } from '@angular/core';
+import { Directive, HostListener, HostBinding, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[dirHighlight]'
@@ -10,20 +10,25 @@ export class HighlightDirective {
     // this.renderer.setElementStyle(this.elementRef.nativeElement, 'background-color', 'green'); // Better way
   }
 
-  private backgroundColor = 'white';
+  @Input() defaultColor = 'white';
+  private backgroundColor: string;
+
+  @Input('dirHighlight') highlightColor = 'green'; // Alias saves us writing both [dirHighlight] and [highlightcolor]
 
   @HostBinding('style.backgroundColor') get setColor() {
     return this.backgroundColor;
   }
 
-  @HostListener('mouseenter', ['$event']) mouseover(event) {
-    this.backgroundColor = 'green';
-    console.log(event.target);
+  @HostListener('mouseenter') mouseover() {
+    this.backgroundColor = this.highlightColor;
   }
 
-  @HostListener('mouseleave', ['$event']) mouseleave(event) {
-    this.backgroundColor = 'white';
-    console.log(event.target);
+  @HostListener('mouseleave') mouseleave() {
+    this.backgroundColor = this.defaultColor;
+  }
+
+  ngOnInit() {
+    this.backgroundColor = this.defaultColor;
   }
 
 }
