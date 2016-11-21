@@ -16,12 +16,14 @@ export class HighlightDirective {
     return this.backgroundColor;
   }
 
-  @HostListener('mouseenter') mouseover() {
+  @HostListener('mouseenter', ['$event']) mouseover(event) {
     this.backgroundColor = 'green';
+    console.log(event.target);
   }
 
-  @HostListener('mouseleave') mouseleave() {
+  @HostListener('mouseleave', ['$event']) mouseleave(event) {
     this.backgroundColor = 'white';
+    console.log(event.target);
   }
 
 }
