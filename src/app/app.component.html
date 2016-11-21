@@ -3,7 +3,7 @@
 <div [ngStyle]="{ 'border': '3px solid blue', 'background': 'green'}"></div>
 <hr>
 <h2>Custom Attribute Directive</h2>
-<div [defaultColor] = "'red'" [dirHighlight]="'blue'">Some Text</div>
+<div [defaultColor]="'red'" [dirHighlight]="'blue'">Some Text</div>
 <hr>
 <h1>Structural Directives</h1>
 <h2>*ngIf</h2>
@@ -14,3 +14,10 @@
 <ul>
     <li *ngFor="let item of items; let i = index">Index: {{i}}, Value: {{item}}</li>
 </ul>
+<hr>
+<h2>ngSwitch</h2>
+<div [ngSwitch]="value">
+    <p *ngSwitchCase="10">10</p>
+    <p *ngSwitchCase="100">100</p>
+    <p *ngSwitchDefault>Default</p>
+</div>
